@@ -1,0 +1,49 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url = "file:./dev.db"
+}
+
+model User {
+  id         String      @id @default(uuid())       // Internal unique ID
+  discordId  String      @unique                    // From Discord OAuth
+  username   String                                  // From Discord
+  avatarUrl  String?                                // Discord avatar (optional)
+  balance    Float       @default(0)            // Starting cash balance
+  createdAt  DateTime    @default(now())            // Signup timestamp
+
+  // Relations
+  portfolio  Position[]                             // Stocks they own
+  trades     Trade[]                                // Trade history
+}
+
+model Position {
+  id         String   @id @default(uuid())
+  userId     String
+  stock      String   // e.g., AAPL
+  quantity   Int
+  avgBuyPrice Float
+  user       User     @relation(fields: [userId], references: [id])
+}
+
+model Trade {
+  id         String   @id @default(uuid())
+  userId     String
+  stock      String
+  quantity   Int
+  price      Float    // Price per share
+  type       TradeType
+  timestamp  DateTime @default(now())
+  user       User     @relation(fields: [userId], references: [id])
+}
+
+enum TradeType {
+  BUY
+  SELL
+}

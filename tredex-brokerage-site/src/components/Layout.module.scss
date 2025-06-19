@@ -1,0 +1,114 @@
+.container {
+  background-color: #1a1a1a;
+  min-height: 100vh;
+  color: #eeeeee;
+  margin: 0%;
+  padding: 0%;
+  font-family: 'Fira Code', 'Courier New', monospace;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #121212;
+  border-bottom: 1px solid #333;
+  font-family: 'Fira Code', monospace;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.logoSection {
+  display: flex;
+  align-items: center;
+  color: #2ea9fa;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.logoIcon {
+  margin-right: 0.5rem;
+  height: 51px;
+}
+
+.navRight {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.navLinks {
+  display: flex;
+  gap: 1rem;
+}
+
+.navButton {
+  background: none;
+  background-color: transparent;
+  border: none;
+  color: #d3d4d4;
+  font-weight: bold;
+  font-family: 'Fira Code', monospace;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 0.4rem 0.8rem;
+  border-radius: 0;
+  transition: none;
+}
+
+.navButton:hover {
+  background-color: #2ea9fa;
+  color: black;
+}
+
+.active {
+  background-color: #0ea5e9;
+  color: white;
+}
+
+.icon {
+  margin-right: 0.5rem;
+}
+
+.profileSection {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.profileText {
+  text-align: right;
+}
+
+.username {
+  font-weight: bold;
+  color: #f8fafc;
+}
+
+.balance {
+  font-size: 0.875rem;
+  color: #94a3b8;
+}
+
+.logoutButton {
+  background: none;
+  border: none;
+  color: #94a3b8;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.logoutButton:hover {
+  color: #f87171;
+}
+
+.logoutIcon {
+  width: 20px;
+  height: 20px;
+}
+
+.mainContent {
+  padding: 2rem;
+}
