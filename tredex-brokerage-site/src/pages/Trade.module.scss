@@ -1,0 +1,155 @@
+.trade {
+  padding: 2rem;
+  background: none; // remove background color
+  color: #fff;
+}
+
+.searchBar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+
+  input {
+    width: 100%;
+    max-width: 400px;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    background-color: #1e293b;
+    border: 1px solid #334155;
+    color: #e2e8f0;
+    border-radius: 0.375rem;
+  }
+}
+
+.suggestions {
+  position: absolute;
+  top: 100%;
+  margin-top: 0.25rem;
+  background-color: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 0.375rem;
+  list-style: none;
+  padding: 0;
+  width: 100%;
+  max-width: 400px;
+  z-index: 10;
+
+  li {
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    &:hover {
+      background-color: #334155;
+    }
+  }
+}
+
+.mainContent {
+  display: flex;
+  gap: 2rem;
+  padding: 1rem 0;
+  align-items: flex-start;
+}
+
+
+.chart {
+  flex: 1;
+  padding: 0;
+  display: flex;
+  align-items: stretch;
+  justify-content: stretch;
+  iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+}
+
+.stats, .recentTrades {
+  background: #1b1e2e;
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.4);
+  flex: 1;
+}
+
+.tradeForm {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  input {
+    padding: 0.5rem;
+    background-color: #0f172a;
+    border: 1px solid #334155;
+    color: #e2e8f0;
+    border-radius: 0.375rem;
+  }
+
+  button {
+    padding: 0.5rem;
+    border: none;
+    border-radius: 0.375rem;
+    font-weight: bold;
+    font-family: inherit;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+
+    &:first-of-type {
+      background-color: #16a34a;
+      color: white;
+
+      &:hover {
+        background-color: #15803d;
+      }
+    }
+
+    &:last-of-type {
+      background-color: #dc2626;
+      color: white;
+
+      &:hover {
+        background-color: #b91c1c;
+      }
+    }
+  }
+}
+
+.recentTrades {
+  background-color: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 0.5rem;
+  padding: 1rem;
+
+  h2 {
+    font-size: 1.1rem;
+    color: #38bdf8;
+    margin-bottom: 0.5rem;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+
+    th, td {
+      padding: 0.5rem;
+      text-align: left;
+      border-bottom: 1px solid #334155;
+    }
+
+    th {
+      color: #94a3b8;
+      font-size: 0.85rem;
+    }
+
+    td {
+      font-size: 0.9rem;
+    }
+  }
+
+  p {
+    text-align: center;
+    font-style: italic;
+    color: #64748b;
+  }
+}

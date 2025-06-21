@@ -77,7 +77,7 @@ router.get('/me', async (req: Request, res: Response): Promise<void> => {
   const user = await prisma.user.findUnique({
     where: { id: userId },
     include: {
-      portfolio: true,
+      positions: true, // Use lowercase 'positions' to match schema
     },
   });
 
@@ -88,6 +88,5 @@ router.get('/me', async (req: Request, res: Response): Promise<void> => {
 
   res.json(user);
 });
-
 
 export default router;

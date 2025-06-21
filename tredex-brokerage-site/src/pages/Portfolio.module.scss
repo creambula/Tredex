@@ -4,28 +4,76 @@
   color: #cbd5e1;
 }
 
+.header {
+  margin-bottom: 2rem;
+  h1 {
+    color: #38bdf8;
+    margin: 0;
+  }
+  p {
+    color: #94a3b8;
+    margin-top: 0.25rem;
+  }
+}
+
 .summary {
   display: flex;
-  gap: 2rem;
-  font-size: 1.2rem;
+  flex-wrap: wrap;
+  gap: 1.5rem;
   margin-bottom: 2rem;
 }
 
+.card {
+  background: #1e293b;
+  padding: 1rem 1.5rem;
+  border: 1px solid #334155;
+  border-radius: 0.5rem;
+  min-width: 150px;
+
+  h2 {
+    margin: 0;
+    font-size: 1rem;
+    color: #7dd3fc;
+  }
+
+  p {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin: 0.25rem 0 0 0;
+  }
+}
+
+.tableWrapper {
+  margin-top: 1rem;
+}
+
+.sectionTitle {
+  margin-bottom: 0.75rem;
+  color: #7dd3fc;
+  font-size: 1.1rem;
+}
+
 .table {
-  border-top: 1px solid #475569;
+  border: 1px solid #334155;
+  border-radius: 0.25rem;
+  overflow: hidden;
 }
 
 .row {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
-  padding: 0.75rem 0;
+  padding: 0.75rem 1rem;
   border-bottom: 1px solid #334155;
+
+  &:last-child {
+    border-bottom: none;
+  }
 }
 
-.header {
-  font-weight: bold;
+.headerRow {
+  background: #0f172a;
   color: #38bdf8;
-  background-color: #0f172a;
+  font-weight: bold;
 }
 
 .profit {
@@ -34,6 +82,13 @@
 
 .loss {
   color: #ef4444;
+}
+
+.empty {
+  padding: 1rem;
+  text-align: center;
+  font-style: italic;
+  color: #64748b;
 }
 
 .loading {

@@ -4,6 +4,9 @@ import { PrismaClient } from '@prisma/client';
 import cookieParser from 'cookie-parser';
 
 import authRoutes from './routes/auth';
+import portfolioRoutes from './routes/portfolio';
+import stockRoutes from './routes/stocks';
+import userRoutes from './routes/user'
 
 const app = express();
 const prisma = new PrismaClient();
@@ -15,15 +18,24 @@ app.use(cors({
 app.use(express.json());
 app.use(cookieParser());
 
-// ✅ Use the router properly — don't pass functions to `use`
+// Routes
 app.use('/auth', authRoutes);
+app.use('/api/portfolio', portfolioRoutes);
+app.use('/api/stocks', stockRoutes);
+app.use('/api/user', userRoutes)
 
-app.get('/api/stocks/:symbol', (req, res) => {
-  const symbol = req.params.symbol.toUpperCase();
-  const fakePrice = (Math.random() * 1000).toFixed(2);
-  res.json({ symbol, price: fakePrice });
+// Health check endpoint
+app.get('/health', (req, res) => {
+  res.json({ status: 'OK', timestamp: new Date().toISOString() });
 });
 
-app.listen(3000, () => {
-  console.log('Server running on http://localhost:3000');
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+  console.log(`Server running on http://localhost:${PORT}`);
+});
+
+// Graceful shutdown
+process.on('beforeExit', async () => {
+  await prisma.$disconnect();
 });

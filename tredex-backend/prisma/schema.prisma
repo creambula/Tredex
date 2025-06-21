@@ -1,49 +1,61 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
   provider = "sqlite"
-  url = "file:./dev.db"
+  url      = env("DATABASE_URL")
 }
 
 model User {
-  id         String      @id @default(uuid())       // Internal unique ID
-  discordId  String      @unique                    // From Discord OAuth
-  username   String                                  // From Discord
-  avatarUrl  String?                                // Discord avatar (optional)
-  balance    Float       @default(0)            // Starting cash balance
-  createdAt  DateTime    @default(now())            // Signup timestamp
+  id         String   @id @default(cuid())
+  discordId  String   @unique
+  username   String
+  avatarUrl  String?
+  balance    Float    @default(10000.0) // Starting balance
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
 
   // Relations
-  portfolio  Position[]                             // Stocks they own
-  trades     Trade[]                                // Trade history
+  positions  Position[]
+  transactions Transaction[]
+
+  @@map("users")
 }
 
 model Position {
-  id         String   @id @default(uuid())
-  userId     String
-  stock      String   // e.g., AAPL
-  quantity   Int
-  avgBuyPrice Float
-  user       User     @relation(fields: [userId], references: [id])
+  id          String   @id @default(cuid())
+  ticker      String   // Stock symbol (e.g., "AAPL", "GOOGL")
+  quantity    Int      // Number of shares owned
+  avgBuyPrice Float    // Average price paid per share
+  userId      String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, ticker])
+  @@map("positions")
 }
 
-model Trade {
-  id         String   @id @default(uuid())
-  userId     String
-  stock      String
-  quantity   Int
-  price      Float    // Price per share
-  type       TradeType
-  timestamp  DateTime @default(now())
-  user       User     @relation(fields: [userId], references: [id])
+model Transaction {
+  id          String      @id @default(cuid())
+  userId      String
+  ticker      String
+  type        TransactionType
+  quantity    Int
+  price       Float
+  totalAmount Float
+  createdAt   DateTime    @default(now())
+
+  // Relations
+  user        User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("transactions")
 }
 
-enum TradeType {
+enum TransactionType {
   BUY
   SELL
 }
